@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/v1/task")
 public class TaskController {
@@ -29,7 +30,7 @@ public class TaskController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE,value = "deleteTask")
-    public void deleteTask(@RequestParam String taskId){
+    public void deleteTask(@RequestParam Long taskId){
         service.deleteTaskBy(taskId);
     }
 
