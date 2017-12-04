@@ -10,11 +10,12 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class TrelloClient {
 
-    @Value("${username}")
+    @Value("${trello.username}")
     private String trelloUsername;
 
     @Value("${trello.api.endpoint.prod}")
@@ -31,16 +32,16 @@ public class TrelloClient {
 
     public List<TrelloBoardDto> getTrelloBoards() {
 
-        URI url = UriComponentsBuilder.fromHttpUrl(trelloApiEndPoint + "/members/"+trelloUsername+"/boards")
-                .queryParam("key", trelloApiKey)
-                .queryParam("token", trelloApiToken)
-                .queryParam("fields", "name,id").build().encode().toUri();
+        URI url = getUri();
 
         TrelloBoardDto[] boardsResponse =restTemplate.getForObject(url,TrelloBoardDto[].class);
+        return Arrays.asList(Optional.ofNullable(boardsResponse).orElse(new TrelloBoardDto[0]));
+    }
 
-        if (boardsResponse !=null){
-            return Arrays.asList(boardsResponse);
-        }
-        return new ArrayList<>();
+    private URI getUri() {
+        return UriComponentsBuilder.fromHttpUrl(trelloApiEndPoint + "/members/" + trelloUsername + "/boards")
+                    .queryParam("key", trelloApiKey)
+                    .queryParam("token", trelloApiToken)
+                    .queryParam("fields", "name,id").build().encode().toUri();
     }
 }
