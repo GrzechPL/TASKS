@@ -35,7 +35,6 @@ public class TrelloController {
                     System.out.println(trelloList.getName() + " - " + trelloList.getId() + " - " + trelloList.isClosed()));
 
         });
-
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "createTrelloCard")
