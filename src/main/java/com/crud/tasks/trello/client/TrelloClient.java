@@ -1,7 +1,6 @@
 package com.crud.tasks.trello.client;
 
 import com.crud.tasks.domain.CreatedTrelloCard;
-import com.crud.tasks.domain.TrelloBadgesDto;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,15 +39,7 @@ public class TrelloClient {
         return Arrays.asList(Optional.ofNullable(boardsResponse).orElse(new TrelloBoardDto[0]));
     }
 
-    public ??? getTrelloBadges() {
-
-        URI url = getUriBadges();
-
-        TrelloBadgesDto[] boardsResponse =restTemplate.getForObject(url,TrelloBadgesDto[].class);
-        return Arrays.asList(Optional.ofNullable(boardsResponse).orElse(new TrelloBadgesDto[0]));
-    }
-
-    public CreatedTrelloCard createNewCard(TrelloCardDto trelloCardDto){
+     public CreatedTrelloCard createNewCard(TrelloCardDto trelloCardDto){
 
         URI url = UriComponentsBuilder.fromHttpUrl(trelloApiEndPoint + "/cards")
                 .queryParam("key", trelloApiKey)
@@ -68,14 +59,4 @@ public class TrelloClient {
                     .queryParam("fields", "name,id")
                     .queryParam("lists", "all").build().encode().toUri();
     }
-
-    private URI getUriBadges() {
-        return UriComponentsBuilder.fromHttpUrl(trelloApiEndPoint + "/cards")
-                .queryParam("key", trelloApiKey)
-                .queryParam("token", trelloApiToken)
-                .queryParam("fields", "name,id")
-                .queryParam("lists", "all").build().encode().toUri();
-    }
-
-
 }
