@@ -25,13 +25,12 @@ public class SimpleEmailServiceTest {
     @Test
     public void schouldSendEmail(){
         //Given
-        Mail mail = new Mail("Michał","Zakupy","Idziemy do Saturna po komputer Gameingowy","CopyMessage");
+        Mail mail = new Mail("Michał","Zakupy","Idziemy do Saturna po komputer Gameingowy");
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getMailTo());
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
-        mailMessage.setCc(mail.getToCc());
 
         //When
 
