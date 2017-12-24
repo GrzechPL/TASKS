@@ -2,15 +2,12 @@ package com.crud.tasks.facade;
 
 import com.crud.tasks.domain.TrelloBoard;
 import com.crud.tasks.domain.TrelloBoardDto;
+import com.crud.tasks.domain.TrelloList;
 import com.crud.tasks.mapper.TrelloMapper;
-import com.crud.tasks.trello.facade.TrelloFacade;
-import com.crud.tasks.trello.validator.TrelloValidator;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,9 +22,16 @@ public class TrelloFacadeTest {
     @Test
     public void mapToBoardDtoTest() {
 
-        TrelloBoard trelloBoard1 = new TrelloBoard("test_id1", "test_board1", new ArrayList<>());
-        TrelloBoard trelloBoard2 = new TrelloBoard("test_id2", "test_board2", new ArrayList<>());
-        TrelloBoard trelloBoard3 = new TrelloBoard("test_id3", "test_board3", new ArrayList<>());
+        TrelloList trelloList1 = new TrelloList("1","test1",true);
+        TrelloList trelloList2 = new TrelloList("2","test2",false);
+
+        List<TrelloList> trelloList = new LinkedList<>();
+        trelloList.add(trelloList1);
+        trelloList.add(trelloList2);
+
+        TrelloBoard trelloBoard1 = new TrelloBoard("test_id1", "test_board1", trelloList);
+        TrelloBoard trelloBoard2 = new TrelloBoard("test_id2", "test_board2", trelloList);
+        TrelloBoard trelloBoard3 = new TrelloBoard("test_id3", "test_board3", trelloList);
 
         List<TrelloBoard> trelloBoardList = new LinkedList<>();
         trelloBoardList.add(trelloBoard1);
