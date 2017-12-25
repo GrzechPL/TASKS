@@ -9,9 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import org.slf4j.Logger;
+import org.springframework.stereotype.Component;
 
 import static java.util.stream.Collectors.toList;
-
+@Component
 public class TrelloFacade {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TrelloFacade.class);

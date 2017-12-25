@@ -11,13 +11,13 @@ import static java.util.stream.Collectors.toList;
 public class TrelloMapper {
     public List<TrelloBoard> mapToBoard(final List<TrelloBoardDto> trelloBoardDto){
         return trelloBoardDto.stream()
-                .map(trelloBoard->new TrelloBoard(trelloBoard.getId(),trelloBoard.getName(),mapToList(trelloBoard.getLists())))
+                .map(trelloBoard->new TrelloBoard(trelloBoard.getName(),trelloBoard.getId(),mapToList(trelloBoard.getLists())))
                 .collect(toList());
     }
 
     public List<TrelloBoardDto> mapToBoardDto(final List<TrelloBoard> trelloBoards){
         return trelloBoards.stream()
-                .map(trelloBoard->new TrelloBoardDto(trelloBoard.getId(),trelloBoard.getName(),mapToListDto(trelloBoard.getLists())))
+                .map(trelloBoard->new TrelloBoardDto(trelloBoard.getName(),trelloBoard.getId(),mapToListDto(trelloBoard.getLists())))
                 .collect(toList());
     }
     public List<TrelloList> mapToList(final List<TrelloListsDto> trelloListDto){
