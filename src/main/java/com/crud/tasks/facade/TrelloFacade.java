@@ -1,4 +1,4 @@
-package com.crud.tasks.trello.facade;
+package com.crud.tasks.facade;
 
 import com.crud.tasks.domain.*;
 import com.crud.tasks.mapper.TrelloMapper;
@@ -11,7 +11,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
 
-import static java.util.stream.Collectors.toList;
 @Component
 public class TrelloFacade {
 
