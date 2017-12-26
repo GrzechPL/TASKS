@@ -40,26 +40,25 @@ public class TaskControllerTest {
     @Autowired
     private TaskMapper taskMapper;
 
-//    @Test
-//    public void getTask() throws Exception {
-//        //Given
-//        Task task =new Task(
-//                1L,
-//                "TaskDto",
-//                "Content of TaskDto");
-//
-//        //when(service.getTask(0L)).thenReturn(new Optional<>(task));
-//
-//
-//        //When & Then
-//        mockMvc.perform(get("/v1/task/getTask").contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(status().is(200))//or isOk()
-//                .andExpect(jsonPath("$",hasSize(1)))
-//                .andExpect(jsonPath("$[0].id",is(1)))
-//                .andExpect(jsonPath("$[0].title",is("TaskDto")))
-//                .andExpect(jsonPath("$[0].content",is("Content of TaskDto")));
-//    }
-//
+    @Test
+    public void getTask() throws Exception {
+        //Given
+        Task task =new Task(
+                1L,
+                "TaskDto",
+                "Content of TaskDto");
+
+        when(service.getTask(0L)).thenReturn(Optional.ofNullable(task));
+
+        //When & Then
+        mockMvc.perform(get("/v1/task/getTask").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is(200))//or isOk()
+                .andExpect(jsonPath("$",hasSize(1)))
+                .andExpect(jsonPath("$[0].id",is(1)))
+                .andExpect(jsonPath("$[0].title",is("TaskDto")))
+                .andExpect(jsonPath("$[0].content",is("Content of TaskDto")));
+    }
+
 //    @Test
 //    public void createTask() throws Exception {
 //        //Given
