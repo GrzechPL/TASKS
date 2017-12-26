@@ -1,6 +1,8 @@
 package com.crud.tasks.controller;
 import com.crud.tasks.domain.Task;
 import com.crud.tasks.domain.TaskDto;
+import com.crud.tasks.mapper.TaskMapper;
+import com.crud.tasks.service.DbService;
 import com.google.gson.Gson;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +14,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Optional;
+
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
@@ -21,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(TrelloController.class)
+@WebMvcTest(TaskController.class)
 public class TaskControllerTest {
 
     @Autowired
@@ -30,51 +34,54 @@ public class TaskControllerTest {
     @MockBean
     private TaskController taskController;
 
-    @Test
-    public void getTask() throws Exception {
-        //Given
-        TaskDto taskDto =new TaskDto(
-                1L,
-                "TaskDto",
-                "Content of TaskDto");
+    @Autowired
+    private DbService service;
 
-        when(taskController.getTask(1L)).thenReturn(taskDto);
-        //When & Then
-        mockMvc.perform(get("/v1/task/getTask").contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is(200))//or isOk()
-                .andExpect(jsonPath("$",hasSize(1)))
-                .andExpect(jsonPath("$[0].id",is(1)))
-                .andExpect(jsonPath("$[0].title",is("TaskDto")))
-                .andExpect(jsonPath("$[0].content",is("Content of TaskDto")));
+    @Autowired
+    private TaskMapper taskMapper;
+
+//    @Test
+//    public void getTask() throws Exception {
+//        //Given
+//        Task task =new Task(
+//                1L,
+//                "TaskDto",
+//                "Content of TaskDto");
+//
+//        //when(service.getTask(0L)).thenReturn(new Optional<>(task));
+//
+//
+//        //When & Then
+//        mockMvc.perform(get("/v1/task/getTask").contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().is(200))//or isOk()
+//                .andExpect(jsonPath("$",hasSize(1)))
+//                .andExpect(jsonPath("$[0].id",is(1)))
+//                .andExpect(jsonPath("$[0].title",is("TaskDto")))
+//                .andExpect(jsonPath("$[0].content",is("Content of TaskDto")));
+//    }
+//
+//    @Test
+//    public void createTask() throws Exception {
+//        //Given
+//
+//        TaskDto taskDto = new TaskDto(
+//                1L,
+//                "Task",
+//                "Content of Task");
+//
+//        when().thenReturn(task);
+//
+//        Gson gson = new Gson();
+//        String jsonContent = gson.toJson(task);
+//
+//        //When & Then
+//        mockMvc.perform(post("/v1/task/createTask")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .characterEncoding("UTF-8")
+//                .content(jsonContent))
+//                .andExpect(jsonPath("$.id",is(1L)))
+//                .andExpect(jsonPath("$.title",is("Task")))
+//                .andExpect(jsonPath("$.content",is("Content of Task")));
+//    }
     }
 
-    @Test
-    public void createTask() throws Exception {
-        //Given
-        TaskDto taskDto =new TaskDto(
-                1L,
-                "TaskDto",
-                "Content of TaskDto");
-
-        Task task =new Task(
-                1L,
-                "Task",
-                "Content of Task");
-
-        when(taskController.createTask(ArgumentMatchers.any(TaskDto.class))).thenReturn(task);
-
-        Gson gson = new Gson();
-        String jsonContent = gson.toJson(taskDto);
-
-        //When & Then
-        mockMvc.perform(post("/v1/task/createTask")
-                .contentType(MediaType.APPLICATION_JSON)
-                .characterEncoding("UTF-8")
-                .content(jsonContent))
-                .andExpect(jsonPath("$.id",is(1L)))
-                .andExpect(jsonPath("$.title",is("Task")))
-                .andExpect(jsonPath("$.content",is("Content of Task")));
-    }
-    }
-
-}
