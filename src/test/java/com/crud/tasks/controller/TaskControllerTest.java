@@ -143,12 +143,16 @@ public class TaskControllerTest {
         when(taskMapper.maptotaskDto(ArgumentMatchers.any(Task.class))).thenReturn(taskDto);
         when(service.saveTask(ArgumentMatchers.any(Task.class))).thenReturn(task);
 
+        Gson gson = new Gson();
+        String jsonContent = gson.toJson(taskDto);
+
         //When & Then
-        mockMvc.perform(put("/v1/task/updateTasks").contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is(200))
-                .andExpect(jsonPath("$.id",is(1)))
-                .andExpect(jsonPath("$.title",is("Task")))
-                .andExpect(jsonPath("$.content",is("Content of Task")));
+        mockMvc.perform(put("/v1/task/updateTasks")
+                .contentType(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8")
+                .content(jsonContent))
+                .andExpect(status().is(200));
+
     }
 
 
