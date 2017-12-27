@@ -20,6 +20,7 @@ import java.util.Optional;
 
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -116,24 +117,15 @@ public class TaskControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
-                .andExpect(status().is(200))//or isOk()
-                .andExpect(jsonPath("$.id",is(1)))
-                .andExpect(jsonPath("$.title",is("TaskDto")))
-                .andExpect(jsonPath("$.content",is("Content of TaskDto")));
+                .andExpect(status().is(200));
+
     }
     @Test
     public void deleteTask() throws Exception {
-        //Given
-        Task task =new Task();
-
-        when(service.deleteTaskBy(1L)).thenReturn(task);
-
         //When & Then
-        mockMvc.perform(get("/v1/task/deleteTask?taskId=1").contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is(200))//or isOk()
-                .andExpect(jsonPath("$.id",is(Optional.of(null))))
-                .andExpect(jsonPath("$.title",is(Optional.of(null))))
-                .andExpect(jsonPath("$.content",is(Optional.of(null))));
+        mockMvc.perform(delete("/v1/task/deleteTask?taskId=1"))
+                .andExpect(status().is(200));
+
     }
 
 
