@@ -13,4 +13,5 @@ public class TrelloBoard {
     private String id;
     private List<TrelloList> lists;
 
+
 }

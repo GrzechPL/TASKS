@@ -60,5 +60,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-actuator')
 //Thymeleaf
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+<<<<<<< HEAD
 
+=======
+>>>>>>> 767146d6a0870b40a067f96896c2fb1793631361
 }
