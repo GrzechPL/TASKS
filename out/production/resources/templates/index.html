@@ -1,10 +1,15 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+=======
+<html lang="en" xmlns: th="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
+>>>>>>> 9ed4e04c1f67d5235fc019cf976f334cad221a97
 <head>
     <meta charset="UTF-8">
     <title>My welcome page</title>
 </head>
 <body>
+<<<<<<< HEAD
     <h1>First impression of my page</h1>
 
 <!--/*@thymesVar id="variable" type="com.crud.tasks.controller.StaticWebPageController"*/-->
@@ -19,3 +24,16 @@
 </html>
 
 
+=======
+<h1>First impression of my page</h1>
+<br>
+<!--/*@thymesVar id="variable" type="com.crud.tasks.controller.StaticWebPageController"*/-->
+<span th:text="${variable}"></span>
+
+<!--/*@thymesVar id="two" type="com.crud.tasks.controller.StaticWebPageController"*/-->
+<span th:text=$"2*2="+"${two}*${two}"></span>
+<span th:text=$"2*2+2="+"${two}*${two}+${two}"></span>
+<span th:text=$"2-2*2="+"${two}-${two}*${two}"></span>
+</body>
+</html>
+>>>>>>> 9ed4e04c1f67d5235fc019cf976f334cad221a97
