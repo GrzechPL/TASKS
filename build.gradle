@@ -43,10 +43,10 @@ dependencies {
     compile('org.projectlombok:lombok')
 
 //Mysql
-	compile('mysql:mysql-connector-java')
+	//compile('mysql:mysql-connector-java')
 
 //Postgresql
-	//compile('org.postgresql:postgresql')
+	compile('org.postgresql:postgresql')
 
 //Swagger
 	compile('io.springfox:springfox-swagger2:2.7.0')
