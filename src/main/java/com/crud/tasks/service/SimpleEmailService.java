@@ -29,7 +29,7 @@ public class SimpleEmailService {
 
     try {
    // SimpleMailMessage mailMessage = createMailMessage(mail);
-    javaMailSender.send(createMimeMessage(mail));
+    javaMailSender.send(createSecondMessage(mail));
     LOGGER.info("Email has been sent.");
 
         }
@@ -38,14 +38,30 @@ public class SimpleEmailService {
         }
     }
 
-        private MimeMessagePreparator createMimeMessage(final Mail mail){
+//        private MimeMessagePreparator createMimeMessage(final Mail mail) {
+//
+//            return mimeMessage -> {
+//                MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+//                messageHelper.setTo(mail.getMailTo());
+//                messageHelper.setSubject(mail.getSubject());
+//                messageHelper.setText(mailCreatorService.buildTrelloCardEmail(mail.getMessage()), true);
+//            };
+//        }
 
-        return mimeMessage ->{
+    private MimeMessagePreparator createSecondMessage(final Mail mail) {
+
+        return mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setTo(mail.getMailTo());
             messageHelper.setSubject(mail.getSubject());
-            messageHelper.setText(mailCreatorService.buildTrelloCardEmail(mail.getMessage()),true);
+            messageHelper.setText(mailCreatorService.buildSecondEmail(mail.getMessage()), true);
         };
+    }
+
+
+
+
+
 
 //        private SimpleMailMessage createMailMessage(final Mail mail){
 //            SimpleMailMessage mailMessage = new SimpleMailMessage();
@@ -54,6 +70,6 @@ public class SimpleEmailService {
 //            mailMessage.setText(mail.getMessage());
 //            return mailMessage;
 //        }
-}
+
 
 }

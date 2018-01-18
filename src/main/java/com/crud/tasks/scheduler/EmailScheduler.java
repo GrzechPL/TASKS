@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class EmailScheduler {
 
-    private static final String SUBJECT = "Task : period 30 secound";
+    private static final String SUBJECT = "SecondEmail";
 
     @Autowired
     private SimpleEmailService simpleEmailService;
@@ -22,7 +22,9 @@ public class EmailScheduler {
     @Autowired
     private AdminConfig adminConfig;
 
-    @Scheduled(cron ="0 0 10 * * *")
+    @Scheduled(cron = "0 0 12 * * *")
+   // @Scheduled(cron = "*/10 * * * * *")
+
     public void sendInformationEmail(){
 
         String oneOrMore = null;
