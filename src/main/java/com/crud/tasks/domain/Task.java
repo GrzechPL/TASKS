@@ -9,6 +9,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name="tasks")
+@Table(name = "tasks", schema = "task_crud")
 public class Task {
 
     @Id
