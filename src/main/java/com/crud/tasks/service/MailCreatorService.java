@@ -1,21 +1,18 @@
 package com.crud.tasks.service;
 
-<<<<<<< HEAD
+
 import com.crud.tasks.config.AdminConfig;
-=======
->>>>>>> 2e957c358e54a0dd1d161787b31b973ac4a10d7c
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
-<<<<<<< HEAD
+
 import java.util.ArrayList;
 import java.util.List;
 
-=======
->>>>>>> 2e957c358e54a0dd1d161787b31b973ac4a10d7c
+
 @Service
 public class MailCreatorService {
 
@@ -23,7 +20,7 @@ public class MailCreatorService {
     @Qualifier("templateEngine")
     private TemplateEngine templateEngine;
 
-<<<<<<< HEAD
+
     @Autowired
     private AdminConfig adminConfig;
 
@@ -47,11 +44,7 @@ public class MailCreatorService {
         context.setVariable("application_functionality", functionality);
 
         return templateEngine.process("created-trello-card-mail",context);
-=======
-    public String buildTrelloCardEmail(String message){
-        Context context = new Context();
-        context.setVariable("message",message);
-        return templateEngine.process("mail/created-trello-card-mail",context);
->>>>>>> 2e957c358e54a0dd1d161787b31b973ac4a10d7c
+
+
     }
 }
